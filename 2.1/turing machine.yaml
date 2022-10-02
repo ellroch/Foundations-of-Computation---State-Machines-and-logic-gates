@@ -1,0 +1,31 @@
+input: '000111'
+#input: '0000111'
+#input: '0001111'
+blank: ' '
+start state: start
+synonyms:
+  accept: {R: accept}
+table:
+  #seekR for a 0
+  start:
+    1: R
+    0: {write: 'x', R: state1}
+    ' ': {L: state3}
+  #seekL for a 1 or a B
+  state3:
+    ' ': accept
+  #seekR for a 1
+  state1:
+    [0,'x']: R
+    1: {write: 'x', L: state2}
+  #seekL for a 0
+  state2:
+    'x': L
+    0: {write: 'x', R: state1}
+    ' ': {R: state4}
+  #seekR for a blank or 1
+  state4:
+    'x': R
+    ' ': accept
+  #accept state
+  accept:

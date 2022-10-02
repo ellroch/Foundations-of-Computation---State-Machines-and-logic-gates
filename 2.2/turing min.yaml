@@ -1,0 +1,42 @@
+input: '111*11111'
+#input: '11111*111'
+blank: ' '
+start state: findstar
+synonyms:
+  accept: {R: accept}
+table:
+  #START: find the asterisk
+  findstar:
+    1  : R
+    '*': {R: nextBitR}
+  #Processing on right half of string
+  nextBitR:
+    'x': R
+    ' ': {write: ' ', L: flipMinBitsR}
+    1  : {write: 'x', L: retR}
+  retR:
+    'x': L 
+    '*': {L: nextBitL}
+  flipMinBitsR:
+    'x': {write: 1, L}
+    '*': {write: ' ', L: wipeLoserR}
+  wipeLoserR:
+    [1,'x']: {write: ' ', L}
+    ' ': {R: accept}
+  #Processing on left half of string
+  nextBitL:
+    'x': L
+    ' ': {write: ' ', R: flipMinBitsL}
+    1  : {write: 'x', R: retL}
+  retL:
+    'x': R 
+    '*': {R: nextBitR}
+  flipMinBitsL:
+    'x': {write: 1, R}
+    '*': {write: ' ', R: wipeLoserL}
+  wipeLoserL:
+    [1,'x']: {write: ' ', R}
+    ' ': {L: accept}
+  #accept
+  accept:  
+    

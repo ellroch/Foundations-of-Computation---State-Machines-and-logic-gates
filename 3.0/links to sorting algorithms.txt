@@ -1,0 +1,5 @@
+MergeSort: https://replit.com/@ellroch/MergeSort#main.py
+quicksort: https://replit.com/@ellroch/quicksort#main.py
+
+number finding: https://replit.com/@ellroch/number-finding#main.py
+(number finding is under construction as i submit this, but it should be done shortly)
